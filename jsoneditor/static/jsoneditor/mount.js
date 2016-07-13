@@ -1,4 +1,6 @@
 
+JSONEditor.plugins.epiceditor.basePath='/static/EpicEditor-v0.2.2';
+
 document.addEventListener('DOMContentLoaded', function () {
   var editorElements = document.querySelectorAll('div.for_jsoneditor');
 
@@ -36,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var timeout = null;
     editor.on('change', function () {
       function update() {
-        console.log(valueElem);
         valueElem.value = JSON.stringify(editor.getValue());
       }
 

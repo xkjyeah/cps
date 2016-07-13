@@ -1,14 +1,18 @@
 from django.contrib import admin
-from .models import Project, Writeup
+from .models import Project, Writeup, Organization
 from jsoneditor.forms import JSONEditor, JSONField
 
 # Register your models here.
-class WriteupInline(admin.TabularInline):
-    model = Writeup
-    extra = 1
+class OrganizationAdmin(admin.ModelAdmin):
+    model = Organization
+    list_display = ('name',)
+    formfield_overrides = {
+        JSONField: {
+            'widget': JSONEditor
+        }
+    }
 
 class ProjectAdmin(admin.ModelAdmin):
-    inlines = [WriteupInline]
     formfield_overrides = {
         JSONField: {
             'widget': JSONEditor
@@ -16,4 +20,5 @@ class ProjectAdmin(admin.ModelAdmin):
     }
 
 
+admin.site.register(Organization, OrganizationAdmin)
 admin.site.register(Project, ProjectAdmin)

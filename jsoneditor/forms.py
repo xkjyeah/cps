@@ -12,6 +12,7 @@ class JSONEditor(Textarea):
         js = (
             settings.STATIC_URL + 'jsoneditor/jsoneditor.min.js',
             settings.STATIC_URL + 'jsoneditor/mount.js',
+            settings.STATIC_URL + 'EpicEditor-v0.2.2/js/epiceditor.js',
         )
         # css= {'all': (getattr(settings, "JSON_EDITOR_CSS",settings.STATIC_URL+'jsoneditor/jsoneditor.css'),)}
         css = {
@@ -85,7 +86,7 @@ class JSONField(TextField):
         return super(TextField, self).formfield(**defaults)
 
     def deconstruct(self):
-        name, path, args, kwargs = super(HandField, self).deconstruct()
+        name, path, args, kwargs = super(TextField, self).deconstruct()
         kwargs['schema'] = self.schema
         return name, path, args, kwargs
 
